@@ -28,7 +28,7 @@ version = "2024.03"
 
 project {
 
-    vcsRoot(ParentProjectRoot)
+    vcsRoot(HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain)
 
     buildType(BuildAll)
     
