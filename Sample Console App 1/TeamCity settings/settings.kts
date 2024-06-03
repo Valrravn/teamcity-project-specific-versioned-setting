@@ -42,8 +42,9 @@ object Build : BuildType({
     steps {
         dotnetBuild {
             id = "dotnet"
-            projects = "Sample Console App 1/Sample Console App 1.sln"
+            projects = """"Sample Console App 1/Sample Console App 1.sln""""
             sdk = "8"
+            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
     }
 
