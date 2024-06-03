@@ -54,10 +54,10 @@ object BuildAll : BuildType({
     type = BuildTypeSettings.Type.COMPOSITE
 
     vcs {
-         root(DslContext.settingsRoot)
+            root(HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain)
 
-         showDependenciesChanges = true
-     }
+        showDependenciesChanges = true
+    }
 
     triggers {
         vcs {
@@ -75,4 +75,25 @@ object BuildAll : BuildType({
         snapshot(RelativeId("Sample2Project_BuildSample2")) {
         }
     }
+})
+
+object HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain : GitVcsRoot({
+    name = "parentRoot"
+    url = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting"
+    branch = "refs/heads/main"
+    branchSpec = "refs/heads/*"
+    authMethod = password {
+        userName = "Valrravn"
+        password = "credentialsJSON:44a02572-22ac-4888-a5a9-4186fb062ddb"
+    }
+})
+
+
+object SampleProject1 : Project({
+    name = "Sample 1 Project"
+})
+
+
+object SampleProject2 : Project({
+    name = "Sample 2 Project"
 })
