@@ -28,10 +28,12 @@ version = "2024.03"
 
 project {
 
+    vcsRoot(ParentProjectRoot)
+
     buildType(BuildAll)
+    
     subProject(SampleProject1)
     subProject(SampleProject2)
-    vcsRoot(ParentProjectRoot)
 }
 
 // added manually
