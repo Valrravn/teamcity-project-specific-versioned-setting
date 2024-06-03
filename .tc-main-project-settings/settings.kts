@@ -32,6 +32,12 @@ project {
 object BuildAll : BuildType({
     name = "Build All"
 
+    type = BuildTypeSettings.Type.COMPOSITE
+
+    vcs {
+        showDependenciesChanges = true
+    }
+
     dependencies {
         snapshot(RelativeId("Sample1_Build")) {
         }
