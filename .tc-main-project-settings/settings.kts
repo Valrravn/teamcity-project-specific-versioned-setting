@@ -1,4 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
+import jetbrains.buildServer.configs.kotlin.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -27,6 +30,8 @@ version = "2024.03"
 project {
 
     buildType(BuildAll)
+
+    subProject(TeamcityProjectSpecificVersionedSetting)
 }
 
 object BuildAll : BuildType({
@@ -43,5 +48,43 @@ object BuildAll : BuildType({
         }
         snapshot(RelativeId("Sample2_BuildSample2")) {
         }
+    }
+})
+
+
+object TeamcityProjectSpecificVersionedSetting : Project({
+    name = "Teamcity Project Specific Versioned Setting"
+
+    vcsRoot(TeamcityProjectSpecificVersionedSetting_HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain)
+
+    buildType(TeamcityProjectSpecificVersionedSetting_Build)
+})
+
+object TeamcityProjectSpecificVersionedSetting_Build : BuildType({
+    name = "Build"
+
+    vcs {
+        root(TeamcityProjectSpecificVersionedSetting_HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain)
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+
+    features {
+        perfmon {
+        }
+    }
+})
+
+object TeamcityProjectSpecificVersionedSetting_HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain : GitVcsRoot({
+    name = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting#refs/heads/main"
+    url = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting"
+    branch = "refs/heads/main"
+    branchSpec = "refs/heads/*"
+    authMethod = password {
+        userName = "Valrravn"
+        password = "credentialsJSON:44a02572-22ac-4888-a5a9-4186fb062ddb"
     }
 })
