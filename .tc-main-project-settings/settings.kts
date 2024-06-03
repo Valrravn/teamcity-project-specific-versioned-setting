@@ -79,7 +79,7 @@ object S1_Build : BuildType({
 })
 
 object S1_HttpsGithubComValrravnTeamcityProjectSpecificVersionedSettingRefsHeadsMain : GitVcsRoot({
-    name = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting#refs/heads/main"
+    name = "import-s1-root"
     url = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting"
     branch = "refs/heads/main"
     branchSpec = "refs/heads/*"
