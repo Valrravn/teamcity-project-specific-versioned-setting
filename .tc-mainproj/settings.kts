@@ -31,18 +31,25 @@ project {
     buildType(BuildAll)
     subProject(SampleProject1)
     subProject(SampleProject2)
+    vcsRoot(ParentProjectRoot)
 }
+
+// added manually
+object ParentProjectRoot : GitVcsRoot({
+    name = "Subproject 1 root"
+    url = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting"
+    branch = "main"
+    branchSpec = "refs/heads/*"
+    authMethod = password {
+        userName = "Valrravn"
+        password = "zxx9d3653f55381d175752356791b377143da3ea808a3d648360153b91c604058df19081de775f83da7775d03cbe80d301b"
+    }
+})
 
 object BuildAll : BuildType({
     name = "Build All"
 
     type = BuildTypeSettings.Type.COMPOSITE
-
-    vcs {
-        root(DslContext.settingsRoot)
-
-        showDependenciesChanges = true
-    }
 
     triggers {
         vcs {
@@ -65,10 +72,12 @@ object BuildAll : BuildType({
 // Added manually
 object SampleProject1 : Project({
     name = "Sample 1 Project"
+    vcsRoot(SampleProject1_Sample1Root)
 })
 
 object SampleProject2 : Project({
     name = "Sample 2 Project"
+    vcsRoot(SampleProject2_Sample2Root)
 })
 
 // added manually
