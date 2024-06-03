@@ -31,4 +31,11 @@ project {
 
 object BuildAll : BuildType({
     name = "Build All"
+
+    dependencies {
+        snapshot(RelativeId("Sample1_Build")) {
+        }
+        snapshot(RelativeId("Sample2_BuildSample2")) {
+        }
+    }
 })
