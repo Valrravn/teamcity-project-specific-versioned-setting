@@ -30,14 +30,24 @@ version = "2024.03"
 project {
 
     buildType(BuildSample1)
+
+    vcsRoot(SampleProject1_Sample1Root) // added manually
 }
+
+// added manually
+object SampleProject1_Sample1Root : GitVcsRoot({
+    name = "Subproject 1 root"
+    url = "https://github.com/Valrravn/teamcity-project-specific-versioned-setting"
+    branch = "main"
+    branchSpec = "refs/heads/*"
+    authMethod = password {
+        userName = "Valrravn"
+        password = "zxx9d3653f55381d175752356791b377143da3ea808a3d648360153b91c604058df19081de775f83da7775d03cbe80d301b"
+    }
+})
 
 object BuildSample1 : BuildType({
     name = "Build Sample 1"
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
 
     steps {
         dotnetBuild {
@@ -45,11 +55,6 @@ object BuildSample1 : BuildType({
             projects = """"Sample Console App 1/Sample Console App 1.sln""""
             sdk = "8"
             param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
-        }
-    }
-
-    triggers {
-        vcs {
         }
     }
 
