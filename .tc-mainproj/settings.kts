@@ -29,6 +29,8 @@ version = "2024.03"
 project {
 
     buildType(BuildAll)
+    subProject(SampleProject1)
+    subProject(SampleProject2)
 }
 
 object BuildAll : BuildType({
@@ -58,4 +60,14 @@ object BuildAll : BuildType({
         snapshot(RelativeId("Sample2Project_BuildSample2")) {
         }
     }
+})
+
+// Added manually
+
+object SampleProject1 : Project({
+    name = "Sample 1 Project"
+})
+
+object SampleProject2 : Project({
+    name = "Sample 2 Project"
 })
